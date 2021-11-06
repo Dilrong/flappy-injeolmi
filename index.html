@@ -2,6 +2,10 @@
 <html>
   <head>
     <title>플래피 인절미</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+    <meta name="description" content="날아라 인절미" />
     <meta charset="utf-8" />
     <style>
       body {
@@ -23,10 +27,34 @@
         display: none;
       }
     </style>
-    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
-    <link rel="manifest" href="site.webmanifest" />
+    <meta
+      name="viewport"
+      content="width=device-width; 
+    initial-scale=1; maximum-scale=1; user-scalable=0;"
+    />
+    <!-- SEO -->
+    <meta
+      name="description"
+      content="한국인의 정과 훈훈한 인심. 날아가는 인절미 이야기"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="플래피 인절미" />
+    <meta
+      property="og:description"
+      content="한국인의 정과 훈훈한 인심. 날아가는 인절미 이야기"
+    />
+    <meta property="og:image" content="og.png" />
+
+    <meta
+      property="twitter:card"
+      content="한국인의 정과 훈훈한 인심. 날아가는 인절미 이야기"
+    />
+    <meta property="twitter:title" content="플래피 인절미" />
+    <meta
+      property="twitter:description"
+      content="한국인의 정과 훈훈한 인심. 날아가는 인절미 이야기"
+    />
+    <meta property="twitter:image" content="og.png" />
   </head>
   <body>
     <!-- preload images -->
@@ -38,6 +66,15 @@
     <script src="vendor/libs/class.js"></script>
     <script>
       var flappybird = {};
+
+      window.onload = function () {
+        if (window.innerWidth < 320) {
+          console.log("to small");
+        } else if (window.innerWidth >= 320 && window.innerWidth < 480) {
+          canvas.width = window.innerWidth;
+          canvas.height = innerHeight;
+        }
+      };
 
       flappybird.Pipe = Class.extend({
         width: 72,
@@ -395,8 +432,23 @@
           this.context.fillStyle = "#000";
           this.context.textAlign = "center";
           this.context.font = "bold 30px helvetica";
-          this.context.fillText("인절미는 떡상했다.", 400, 240);
-          this.context.fillText("점수: " + this.score, 400, 280);
+          if (window.innerWidth < 320) {
+            console.log("to small");
+          } else if (window.innerWidth >= 320 && window.innerWidth < 480) {
+            this.context.fillText(
+              "인절미는 떡상했다.",
+              window.innerWidth / 2,
+              240
+            );
+            this.context.fillText(
+              "점수: " + this.score,
+              window.innerWidth / 2,
+              280
+            );
+          } else {
+            this.context.fillText("인절미는 떡상했다.", 400, 240);
+            this.context.fillText("점수: " + this.score, 400, 280);
+          }
         },
 
         update: function () {
