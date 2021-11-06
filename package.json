@@ -1,0 +1,11 @@
+{
+  "name": "flappy-injeolmi",
+  "version": "1.0.0",
+  "description": "날아라 인절미",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "dilrong",
+  "license": "MIT"
+}
